@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://dtfokhsrdki8e"]
+
+[ext_resource type="Script" uid="uid://dch6sihykx5by" path="res://scripts/player/player.gd" id="1_wr5hl"]
+[ext_resource type="AudioStream" uid="uid://c8mf0c57g4pux" path="res://audio/sfx/player_hey.wav" id="30_voice"]
+[ext_resource type="AudioStream" uid="uid://dtu1ftcblbb43" path="res://audio/sfx/player_attack.wav" id="31_hit"]
+[ext_resource type="Texture2D" uid="uid://mvma18skkwth" path="res://art/player/attack1.png" id="2_npwbq"]
+[ext_resource type="Texture2D" uid="uid://bv7tkixtcbnia" path="res://art/player/attack3.png" id="3_v42im"]
+[ext_resource type="Texture2D" uid="uid://brugec5wshivf" path="res://art/player/attack2.png" id="4_pn6s4"]
+[ext_resource type="Texture2D" uid="uid://dgqd8tdrejrq3" path="res://art/player/gethit1.png" id="5_5stf6"]
+[ext_resource type="Texture2D" uid="uid://kyptoddlg5ur" path="res://art/player/idle1.png" id="5_7oing"]
+[ext_resource type="Texture2D" uid="uid://c5wirp80iin6c" path="res://art/player/down1.png" id="5_20koh"]
+[ext_resource type="Texture2D" uid="uid://diiq1vsy6jj0b" path="res://art/player/walk1.png" id="6_7oing"]
+[ext_resource type="Texture2D" uid="uid://d0uno5t3nkc46" path="res://art/player/gethit2.png" id="6_180ig"]
+[ext_resource type="Texture2D" uid="uid://c1cneab52e2w" path="res://art/player/down2.png" id="6_ov1oi"]
+[ext_resource type="Texture2D" uid="uid://lvuwmti3uuv2" path="res://art/player/walk2.png" id="8_5stf6"]
+[ext_resource type="Texture2D" uid="uid://bi60r2dvntl40" path="res://art/player/run1.png" id="8_pn6s4"]
+[ext_resource type="Texture2D" uid="uid://dspy4hxpxft5w" path="res://art/player/run2.png" id="9_7oing"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s1fef"]
+radius = 17.666668
+height = 82.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s1fef"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_npwbq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_v42im")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pn6s4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_npwbq")
+}],
+"loop": 0,
+"name": &"attack",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_20koh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ov1oi")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_5stf6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_180ig")
+}],
+"loop": 0,
+"name": &"gethit",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_7oing")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_7oing")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5stf6")
+}],
+"loop": 1,
+"name": &"move",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_pn6s4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_7oing")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pn6s4"]
+size = Vector2(103.5, 166.75)
+
+[node name="Player" type="CharacterBody2D" unique_id=1539245994]
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 0
+position = Vector2(2, 0)
+script = ExtResource("1_wr5hl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1479869343]
+z_index = 1
+scale = Vector2(3, 3)
+shape = SubResource("CapsuleShape2D_s1fef")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=440814122]
+sprite_frames = SubResource("SpriteFrames_s1fef")
+animation = &"death"
+autoplay = "idle"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1301418665]
+offset = Vector2(0, -150)
+limit_left = 0
+limit_top = 0
+limit_right = 2550
+limit_bottom = 1292
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=146365444]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1024100021]
+position = Vector2(88, 11)
+shape = SubResource("RectangleShape2D_pn6s4")
+
+[node name="AttackVoice" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("30_voice")
+bus = &"Voice"
+
+[node name="AttackHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("31_hit")
+bus = &"SFX"

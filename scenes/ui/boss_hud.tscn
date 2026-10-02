@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://ca6c2b6mto7fd"]
+
+[ext_resource type="Texture2D" uid="uid://lsggt46m6hnn" path="res://art/ui/BossHUD/boss_hp_frame.png" id="1_kir7u"]
+[ext_resource type="Texture2D" uid="uid://by72rlvvvybge" path="res://art/ui/BossHUD/Crow_name.png" id="1_wdnf6"]
+[ext_resource type="Script" uid="uid://dhutg5n7bqxmx" path="res://scripts/ui/Boss_hud.gd" id="1_ydy3y"]
+[ext_resource type="Texture2D" uid="uid://ci68dpm6eq87i" path="res://art/ui/BossHUD/boss_hp_fill.png" id="2_wdnf6"]
+
+[node name="BossHUD" type="CanvasLayer" unique_id=2146040148]
+script = ExtResource("1_ydy3y")
+
+[node name="Layout" type="Control" parent="." unique_id=1755486567]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BossName" type="TextureRect" parent="Layout" unique_id=662566695]
+layout_mode = 0
+offset_left = 124.0
+offset_right = 464.0
+offset_bottom = 40.0
+texture = ExtResource("1_wdnf6")
+
+[node name="BossHP" type="TextureProgressBar" parent="Layout" unique_id=160224121]
+layout_mode = 0
+offset_top = 36.0
+offset_right = 588.0
+offset_bottom = 132.0
+step = 10.0
+value = 100.0
+texture_under = ExtResource("1_kir7u")
+texture_progress = ExtResource("2_wdnf6")

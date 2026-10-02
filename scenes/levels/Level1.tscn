@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://c12yw86enwyi"]
+
+[ext_resource type="Script" path="res://scripts/levels/Level1.gd" id="0_levelscript"]
+[ext_resource type="PackedScene" uid="uid://dtfokhsrdki8e" path="res://scenes/player/Player.tscn" id="1_ty8y3"]
+[ext_resource type="Texture2D" uid="uid://c0xumkk0r5jpo" path="res://art/environment/background/background.png" id="2_xnrmx"]
+[ext_resource type="PackedScene" uid="uid://1hhn61sjswsg" path="res://scenes/ui/hud.tscn" id="3_5vxlb"]
+[ext_resource type="PackedScene" uid="uid://cj1bx1nm05hg6" path="res://scenes/enemies/Crow.tscn" id="10_ku760"]
+[ext_resource type="AudioStream" uid="uid://blm52d2bwhqyn" path="res://audio/music/level1.ogg" id="40_levelmusic"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1fef"]
+size = Vector2(2559.125, 88.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qsuaf"]
+size = Vector2(20, 707)
+
+[node name="Level1" type="Node2D" unique_id=1465793617]
+script = ExtResource("0_levelscript")
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=5823234]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=1233197790]
+position = Vector2(1280.438, 666)
+shape = SubResource("RectangleShape2D_s1fef")
+
+[node name="Polygon2D" type="Polygon2D" parent="Ground" unique_id=1773956389]
+
+[node name="Player" parent="." unique_id=1539245994 instance=ExtResource("1_ty8y3")]
+position = Vector2(133, 450)
+move_speed = null
+run_multiplier = null
+jump_force = null
+gravity = null
+max_stamina = null
+stamina_drain = null
+stamina_regen = null
+max_hp = null
+attack_damage = null
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1215111009]
+z_index = -10
+position = Vector2(1280, 313)
+texture = ExtResource("2_xnrmx")
+
+[node name="LeftWall" type="StaticBody2D" parent="." unique_id=1143982431]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall" unique_id=113467639]
+position = Vector2(40, 256)
+shape = SubResource("RectangleShape2D_qsuaf")
+
+[node name="RightWall" type="StaticBody2D" parent="." unique_id=1128402608]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=1907588385]
+position = Vector2(2500, 256)
+shape = SubResource("RectangleShape2D_qsuaf")
+
+[node name="HUD" parent="." unique_id=553786605 instance=ExtResource("3_5vxlb")]
+offset = Vector2(-11, 15)
+scale = Vector2(0.9, 0.9)
+transform = Transform2D(0.9, 0, 0, 0.9, -11, 15)
+
+[node name="Crow" parent="." unique_id=700887172 instance=ExtResource("10_ku760")]
+position = Vector2(2246, 421)
+
+[node name="LevelMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("40_levelmusic")
+bus = &"Music"
+autoplay = true
