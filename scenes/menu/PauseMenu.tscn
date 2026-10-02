@@ -1,0 +1,185 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/PauseMenu.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/panel_pause.png" id="2_panel"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/pause_title.png" id="3_title"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/button_pink_normal.png" id="4_pink_normal"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/button_pink_pressed.png" id="5_pink_pressed"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/button_pink_hover.png" id="6_pink_hover"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/button_blue_normal.png" id="7_blue_normal"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/button_blue_pressed.png" id="8_blue_pressed"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/button_blue_hover.png" id="9_blue_hover"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/button_red_normal.png" id="10_red_normal"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/button_red_pressed.png" id="11_red_pressed"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/button_red_hover.png" id="12_red_hover"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/label_resume.png" id="13_label_resume"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/label_settings.png" id="14_label_settings"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/label_quit.png" id="15_label_quit"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/label_main_menu.png" id="16_label_main_menu"]
+[ext_resource type="PackedScene" path="res://scenes/menu/SettingsMenu.tscn" id="17_settings"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 10
+visible = false
+script = ExtResource("1_script")
+
+[node name="Root" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+
+[node name="Dim" type="ColorRect" parent="Root"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+color = Color(0, 0, 0, 0.6)
+
+[node name="Panel" type="TextureRect" parent="Root"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -270.0
+offset_right = 480.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("2_panel")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PauseTitle" type="TextureRect" parent="Root/Panel"]
+layout_mode = 0
+offset_left = 361.0
+offset_top = 20.0
+offset_right = 599.0
+offset_bottom = 120.0
+mouse_filter = 2
+texture = ExtResource("3_title")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ResumeButton" type="TextureButton" parent="Root/Panel"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 142.0
+offset_right = 760.0
+offset_bottom = 214.0
+texture_normal = ExtResource("4_pink_normal")
+texture_pressed = ExtResource("5_pink_pressed")
+texture_hover = ExtResource("6_pink_hover")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="TextureRect" parent="Root/Panel/ResumeButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("13_label_resume")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SettingsButton" type="TextureButton" parent="Root/Panel"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 230.0
+offset_right = 760.0
+offset_bottom = 302.0
+texture_normal = ExtResource("7_blue_normal")
+texture_pressed = ExtResource("8_blue_pressed")
+texture_hover = ExtResource("9_blue_hover")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="TextureRect" parent="Root/Panel/SettingsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("14_label_settings")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="QuitButton" type="TextureButton" parent="Root/Panel"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 318.0
+offset_right = 760.0
+offset_bottom = 390.0
+texture_normal = ExtResource("10_red_normal")
+texture_pressed = ExtResource("11_red_pressed")
+texture_hover = ExtResource("12_red_hover")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="TextureRect" parent="Root/Panel/QuitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("15_label_quit")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MainMenuButton" type="TextureButton" parent="Root/Panel"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 406.0
+offset_right = 760.0
+offset_bottom = 478.0
+texture_normal = ExtResource("7_blue_normal")
+texture_pressed = ExtResource("8_blue_pressed")
+texture_hover = ExtResource("9_blue_hover")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="TextureRect" parent="Root/Panel/MainMenuButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("16_label_main_menu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Settings" parent="Root" instance=ExtResource("17_settings")]
+
+[connection signal="pressed" from="Root/Panel/ResumeButton" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Root/Panel/SettingsButton" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Root/Panel/QuitButton" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Root/Panel/MainMenuButton" to="." method="_on_main_menu_pressed"]
+[connection signal="back_pressed" from="Root/Settings" to="." method="_on_settings_back_pressed"]

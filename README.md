@@ -19,7 +19,9 @@ This project is created as a game development learning project, focusing on game
 * Player HP / SP HUD
 * Character UI
 * Main menu with animated background
-* Settings panel (music / SFX / voice volume, saved to file)
+* Pause menu (resume / settings / quit / main menu)
+* Settings screen (music / SFX / voice volume, saved to file)
+* Reusable settings scene shared by main menu and pause menu
 * Audio system (music, sound effects, voice channels)
 * Pixel-art based visual style
 
@@ -41,9 +43,9 @@ neon-sin/
 ├── scenes/
 │   ├── enemies/          # Boss scene
 │   ├── levels/           # Level scenes
-│   ├── menu/             # Main menu scene
+│   ├── menu/             # Main menu, pause, settings scenes
 │   ├── player/           # Player scene
-│   └── ui/               # HUD, boss HUD, menu UI
+│   └── ui/               # HUD, boss HUD
 ├── scripts/
 │   ├── enemies/          # Boss AI
 │   ├── levels/           # Level scripts
@@ -73,9 +75,10 @@ The project is currently under development.
 * [x] Death system (player restart, boss removal)
 * [x] Main menu (logo, start / settings / exit)
 * [x] Settings with volume sliders (Music / SFX / Voice)
+* [x] Pause menu (resume / settings / quit / main menu)
 * [x] Background music (menu + level, looping)
 * [x] Sound effects (attack voice, hit sound)
-* [x] Escape to return to main menu
+* [x] Escape to pause / resume in level
 
 ### In Progress
 
@@ -83,7 +86,6 @@ The project is currently under development.
 * [ ] Checkpoint system
 * [ ] Game progression
 * [ ] Visual effects (VFX)
-* [ ] Pause menu
 * [ ] More enemies and boss variety
 
 ## 🚀 Running the Project
@@ -116,7 +118,7 @@ git clone https://github.com/namtit2932k/neon-sin.git
 | Jump | `Space` |
 | Run | `Shift` |
 | Attack | `J` |
-| Back to main menu (in level) | `Escape` |
+| Pause / resume (in level) | `Escape` |
 
 ## 🎨 Development Goals
 

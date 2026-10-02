@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brg7dirlx1j6"
-path="res://.godot/imported/Emoji_u1f422.svg.png-b6bc406e0dc4685b85ce8b9a3c6070e7.ctex"
+uid="uid://dumxjhxx0m57"
+path="res://.godot/imported/button_pink_normal.png-cc62d813c33299eb60a6282827ad175a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Emoji_u1f422.svg.png"
-dest_files=["res://.godot/imported/Emoji_u1f422.svg.png-b6bc406e0dc4685b85ce8b9a3c6070e7.ctex"]
+source_file="res://art/ui/Menu/button_pink_normal.png"
+dest_files=["res://.godot/imported/button_pink_normal.png-cc62d813c33299eb60a6282827ad175a.ctex"]
 
 [params]
 

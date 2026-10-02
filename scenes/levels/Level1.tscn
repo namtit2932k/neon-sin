@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://1hhn61sjswsg" path="res://scenes/ui/hud.tscn" id="3_5vxlb"]
 [ext_resource type="PackedScene" uid="uid://cj1bx1nm05hg6" path="res://scenes/enemies/Crow.tscn" id="10_ku760"]
 [ext_resource type="AudioStream" uid="uid://blm52d2bwhqyn" path="res://audio/music/level1.ogg" id="40_levelmusic"]
+[ext_resource type="PackedScene" path="res://scenes/menu/PauseMenu.tscn" id="50_pausemenu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1fef"]
 size = Vector2(2559.125, 88.5)
@@ -62,6 +63,9 @@ transform = Transform2D(0.9, 0, 0, 0.9, -11, 15)
 position = Vector2(2246, 421)
 
 [node name="LevelMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("40_levelmusic")
 bus = &"Music"
 autoplay = true
+
+[node name="PauseMenu" parent="." instance=ExtResource("50_pausemenu")]

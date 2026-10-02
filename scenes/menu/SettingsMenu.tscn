@@ -1,0 +1,167 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/SettingsMenu.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/settings_title.png" id="2_title"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/label_music_volume.png" id="3_music"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/label_sfx_volume.png" id="4_sfx"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/label_voice_volume.png" id="5_voice"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/slider_track.png" id="6_track"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/slider_fill.png" id="7_fill"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/slider_handle_small.png" id="8_handle"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/label_back.png" id="9_back"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/button_blue_normal.png" id="10_blue_normal"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/button_blue_pressed.png" id="11_blue_pressed"]
+[ext_resource type="Texture2D" path="res://art/ui/Menu/button_blue_hover.png" id="12_blue_hover"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_track"]
+content_margin_top = 12.0
+content_margin_bottom = 12.0
+texture = ExtResource("6_track")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fill"]
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+texture = ExtResource("7_fill")
+
+[node name="SettingsMenu" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="SettingsTitle" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 459.0
+offset_top = 55.0
+offset_right = 693.0
+offset_bottom = 133.0
+mouse_filter = 2
+texture = ExtResource("2_title")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MusicVolume" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 216.0
+offset_top = 195.0
+offset_right = 936.0
+offset_bottom = 247.0
+
+[node name="Label" type="TextureRect" parent="MusicVolume"]
+layout_mode = 0
+offset_right = 216.0
+offset_bottom = 52.0
+mouse_filter = 2
+texture = ExtResource("3_music")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slider" type="HSlider" parent="MusicVolume"]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 6.0
+offset_right = 720.0
+offset_bottom = 46.0
+theme_override_icons/grabber = ExtResource("8_handle")
+theme_override_icons/grabber_highlight = ExtResource("8_handle")
+theme_override_icons/grabber_disabled = ExtResource("8_handle")
+theme_override_styles/slider = SubResource("StyleBoxTexture_track")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_fill")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_fill")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="SFXVolume" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 216.0
+offset_top = 285.0
+offset_right = 936.0
+offset_bottom = 337.0
+
+[node name="Label" type="TextureRect" parent="SFXVolume"]
+layout_mode = 0
+offset_right = 216.0
+offset_bottom = 52.0
+mouse_filter = 2
+texture = ExtResource("4_sfx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slider" type="HSlider" parent="SFXVolume"]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 6.0
+offset_right = 720.0
+offset_bottom = 46.0
+theme_override_icons/grabber = ExtResource("8_handle")
+theme_override_icons/grabber_highlight = ExtResource("8_handle")
+theme_override_icons/grabber_disabled = ExtResource("8_handle")
+theme_override_styles/slider = SubResource("StyleBoxTexture_track")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_fill")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_fill")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="VoiceVolume" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 216.0
+offset_top = 375.0
+offset_right = 936.0
+offset_bottom = 427.0
+
+[node name="Label" type="TextureRect" parent="VoiceVolume"]
+layout_mode = 0
+offset_right = 216.0
+offset_bottom = 52.0
+mouse_filter = 2
+texture = ExtResource("5_voice")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slider" type="HSlider" parent="VoiceVolume"]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 6.0
+offset_right = 720.0
+offset_bottom = 46.0
+theme_override_icons/grabber = ExtResource("8_handle")
+theme_override_icons/grabber_highlight = ExtResource("8_handle")
+theme_override_icons/grabber_disabled = ExtResource("8_handle")
+theme_override_styles/slider = SubResource("StyleBoxTexture_track")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_fill")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_fill")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="BackButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 338.0
+offset_top = 470.0
+offset_right = 814.0
+offset_bottom = 532.0
+texture_normal = ExtResource("10_blue_normal")
+texture_pressed = ExtResource("11_blue_pressed")
+texture_hover = ExtResource("12_blue_hover")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="TextureRect" parent="BackButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("9_back")
+expand_mode = 1
+stretch_mode = 5

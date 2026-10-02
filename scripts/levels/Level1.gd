@@ -1,19 +1,16 @@
 extends Node2D
 
 # ==================================================
-# ESCAPE → MAIN MENU
+# PAUSE
 # ==================================================
 
-# Bấm Escape (ui_cancel) trong màn chơi
-# để quay về main menu.
-
-func _unhandled_input(event: InputEvent) -> void:
-
-	if event.is_action_pressed("ui_cancel"):
-
-		# change_scene_to_file giải phóng màn chơi
-		# → nhạc LevelMusic tự dừng theo.
-
-		get_tree().change_scene_to_file(
-			"res://scenes/menu/MainMenu.tscn"
-		)
+# Escape (ui_cancel) giờ được xử lý bởi node PauseMenu
+# (process_mode = ALWAYS) nằm trong Level1.tscn:
+#
+#   - Đang chơi    → mở màn hình pause
+#   - Đang pause   → resume
+#   - Settings mở  → đóng settings, quay về nút pause
+#
+# Nhờ vậy Escape không còn quay thẳng về main menu
+# như trước nữa. LevelMusic có process_mode = ALWAYS
+# nên nhạc nền vẫn phát trong lúc pause.
