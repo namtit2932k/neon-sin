@@ -1,57 +1,88 @@
 extends CanvasLayer
 
-@onready var hp_bar: TextureProgressBar = $HP/HPBar
-@onready var sp_bar: TextureProgressBar = $SP/SPBar
 
-var hp_fill = preload("res://art/ui/PlayerHUD/hp_fill.png")
-var hp_fill_low = preload("res://art/ui/PlayerHUD/hp_fill_low.png")
+# ==================================================
+# CONSTANTS
+# ==================================================
 
-var sp_fill = preload("res://art/ui/PlayerHUD/sp_fill.png")
-var sp_fill_exhausted = preload("res://art/ui/PlayerHUD/sp_fill_exhausted.png")
+const HP_FILL := preload("res://art/ui/PlayerHUD/hp_fill.png")
+const HP_FILL_LOW := preload("res://art/ui/PlayerHUD/hp_fill_low.png")
+const SP_FILL := preload("res://art/ui/PlayerHUD/sp_fill.png")
+const SP_FILL_EXHAUSTED := preload(
+	"res://art/ui/PlayerHUD/sp_fill_exhausted.png"
+)
+
+# Below this fraction of max HP the bar switches to
+# the low health texture.
+const LOW_HP_RATIO: float = 0.25
+
+
+# ==================================================
+# STATE
+# ==================================================
 
 var current_hp: float = 100.0
 var max_hp: float = 100.0
-
 var current_stamina: float = 100.0
 var max_stamina: float = 100.0
 
 
+# ==================================================
+# REFERENCES
+# ==================================================
+
+@onready var hp_bar: TextureProgressBar = $HP/HPBar
+@onready var sp_bar: TextureProgressBar = $SP/SPBar
+
+
+# ==================================================
+# LIFECYCLE
+# ==================================================
+
 func _ready() -> void:
-	update_hp_bar()
-	update_stamina_bar()
+	_refresh_hp_bar()
+	_refresh_stamina_bar()
 
 
-func update_hp(hp: float, max_health: float) -> void:
+# ==================================================
+# PUBLIC API
+# ==================================================
+
+func update_hp(hp: float, max_value: float) -> void:
 	current_hp = hp
-	max_hp = max_health
+	max_hp = max_value
 
 	if is_node_ready():
-		update_hp_bar()
+		_refresh_hp_bar()
 
 
-func update_stamina(stamina: float, max_stamina_value: float) -> void:
+func update_stamina(stamina: float, max_value: float) -> void:
 	current_stamina = stamina
-	max_stamina = max_stamina_value
+	max_stamina = max_value
 
 	if is_node_ready():
-		update_stamina_bar()
+		_refresh_stamina_bar()
 
 
-func update_hp_bar() -> void:
+# ==================================================
+# BARS
+# ==================================================
+
+func _refresh_hp_bar() -> void:
 	hp_bar.max_value = max_hp
 	hp_bar.value = current_hp
 
-	if current_hp <= max_hp * 0.25:
-		hp_bar.texture_progress = hp_fill_low
-	else:
-		hp_bar.texture_progress = hp_fill
+	hp_bar.texture_progress = (
+		HP_FILL_LOW
+		if current_hp <= max_hp * LOW_HP_RATIO
+		else HP_FILL
+	)
 
 
-func update_stamina_bar() -> void:
+func _refresh_stamina_bar() -> void:
 	sp_bar.max_value = max_stamina
 	sp_bar.value = current_stamina
 
-	if current_stamina <= 0:
-		sp_bar.texture_progress = sp_fill_exhausted
-	else:
-		sp_bar.texture_progress = sp_fill
+	sp_bar.texture_progress = (
+		SP_FILL_EXHAUSTED if current_stamina <= 0.0 else SP_FILL
+	)

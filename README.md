@@ -6,22 +6,13 @@ This project is created as a game development learning project, focusing on game
 
 ## 🎮 Features
 
-* 2D side-scrolling gameplay
-* Player movement and jumping
-* Stamina system
-* Player HP system
-* Combat system
-* Damage / hit system (get-hit animation, knockback, control stun)
-* Death system (death animations, level restart, boss removal)
-* Enemy system
-* Boss system (detection, chase, attack with cooldown)
-* Boss HP bar (connected and updating)
-* Player HP / SP HUD
-* Character UI
+* 2D side-scrolling gameplay with movement, jump, run and dash
+* Combat system with hit feedback (knockback, control stun, death)
+* Boss AI (detection, chase, attack with cooldown) and boss HP bar
+* Stamina and HP systems with player HUD
 * Main menu with animated background
 * Pause menu (resume / settings / quit / main menu)
-* Settings screen (music / SFX / voice volume, saved to file)
-* Reusable settings scene shared by main menu and pause menu
+* Settings screen (Music / SFX / Voice volume, saved to file)
 * Audio system (music, sound effects, voice channels)
 * Pixel-art based visual style
 
@@ -62,23 +53,13 @@ The project is currently under development.
 
 ### Implemented
 
-* [x] Basic player movement
-* [x] Jumping
-* [x] Stamina system
-* [x] Player HP system
-* [x] Player HUD
-* [x] Boss HP bar
-* [x] Basic UI system
-* [x] Player combat
-* [x] Boss AI (detect, chase, attack, cooldown)
-* [x] Damage / hit system (get-hit animation + knockback)
-* [x] Death system (player restart, boss removal)
-* [x] Main menu (logo, start / settings / exit)
-* [x] Settings with volume sliders (Music / SFX / Voice)
-* [x] Pause menu (resume / settings / quit / main menu)
-* [x] Background music (menu + level, looping)
-* [x] Sound effects (attack voice, hit sound)
-* [x] Escape to pause / resume in level
+* [x] Player movement, jump, run and dash
+* [x] Stamina and HP systems with player HUD
+* [x] Player combat, damage / hit system and death system
+* [x] Boss AI with HP bar
+* [x] Main menu with animated background
+* [x] Pause menu (Escape) and settings screen shared by both menus
+* [x] Audio system: looping music, attack voice and hit SFX
 
 ### In Progress
 
@@ -116,7 +97,8 @@ git clone https://github.com/namtit2932k/neon-sin.git
 |---|---|
 | Move left / right | `A` / `D` |
 | Jump | `Space` |
-| Run | `Shift` |
+| Dash (tap) | `Shift` |
+| Run (hold) | `Shift` |
 | Attack | `J` |
 | Pause / resume (in level) | `Escape` |
 

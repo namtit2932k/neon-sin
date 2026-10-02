@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://c12yw86enwyi"]
 
-[ext_resource type="Script" path="res://scripts/levels/Level1.gd" id="0_levelscript"]
+[ext_resource type="Script" uid="uid://bq7fwgrad6y60" path="res://scripts/levels/Level1.gd" id="0_levelscript"]
 [ext_resource type="PackedScene" uid="uid://dtfokhsrdki8e" path="res://scenes/player/Player.tscn" id="1_ty8y3"]
-[ext_resource type="Texture2D" uid="uid://c0xumkk0r5jpo" path="res://art/environment/background/background.png" id="2_xnrmx"]
+[ext_resource type="Texture2D" uid="uid://bphia1n6kwydw" path="res://art/environment/background/background.png" id="2_xnrmx"]
 [ext_resource type="PackedScene" uid="uid://1hhn61sjswsg" path="res://scenes/ui/hud.tscn" id="3_5vxlb"]
 [ext_resource type="PackedScene" uid="uid://cj1bx1nm05hg6" path="res://scenes/enemies/Crow.tscn" id="10_ku760"]
 [ext_resource type="AudioStream" uid="uid://blm52d2bwhqyn" path="res://audio/music/level1.ogg" id="40_levelmusic"]
@@ -27,19 +27,10 @@ shape = SubResource("RectangleShape2D_s1fef")
 
 [node name="Player" parent="." unique_id=1539245994 instance=ExtResource("1_ty8y3")]
 position = Vector2(133, 450)
-move_speed = null
-run_multiplier = null
-jump_force = null
-gravity = null
-max_stamina = null
-stamina_drain = null
-stamina_regen = null
-max_hp = null
-attack_damage = null
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1215111009]
 z_index = -10
-position = Vector2(1280, 313)
+position = Vector2(1280, 173)
 texture = ExtResource("2_xnrmx")
 
 [node name="LeftWall" type="StaticBody2D" parent="." unique_id=1143982431]
@@ -62,10 +53,10 @@ transform = Transform2D(0.9, 0, 0, 0.9, -11, 15)
 [node name="Crow" parent="." unique_id=700887172 instance=ExtResource("10_ku760")]
 position = Vector2(2246, 421)
 
-[node name="LevelMusic" type="AudioStreamPlayer" parent="."]
+[node name="LevelMusic" type="AudioStreamPlayer" parent="." unique_id=1043261179]
 process_mode = 3
 stream = ExtResource("40_levelmusic")
-bus = &"Music"
 autoplay = true
+bus = &"Music"
 
-[node name="PauseMenu" parent="." instance=ExtResource("50_pausemenu")]
+[node name="PauseMenu" parent="." unique_id=1338801112 instance=ExtResource("50_pausemenu")]

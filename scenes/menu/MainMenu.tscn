@@ -140,4 +140,5 @@ texture = ExtResource("17_label_exit")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SettingsMenu" parent="." instance=ExtResource("29_settings")]
+[node name="SettingsMenu" parent="." unique_id=71082870 instance=ExtResource("29_settings")]
+layout_mode = 1

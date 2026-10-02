@@ -148,20 +148,20 @@ radius = 431.2383
 size = Vector2(53.499992, 123.833336)
 
 [node name="Crow" type="CharacterBody2D" unique_id=700887172]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_mf03a")
 attack_damage = 10.0
 attack_cooldown = 3.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=374420944]
-scale = Vector2(2.5, 2.5)
+scale = Vector2(2.2, 2.2)
 sprite_frames = SubResource("SpriteFrames_lrppw")
-animation = &"death"
+animation = &"idle"
 autoplay = "idle"
-frame = 2
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1425780078]
-scale = Vector2(2.5, 2.5)
+scale = Vector2(2.2, 2.2)
 shape = SubResource("CapsuleShape2D_lrppw")
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=1162471337]
@@ -172,7 +172,7 @@ position = Vector2(0.6666665, 0)
 shape = SubResource("CircleShape2D_lrppw")
 
 [node name="AttackArea" type="Area2D" parent="." unique_id=391402288]
-scale = Vector2(2.5, 2.5)
+scale = Vector2(2.2, 2.2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1048846191]
 position = Vector2(-48.666668, 7)

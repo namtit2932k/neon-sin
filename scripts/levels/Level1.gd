@@ -1,16 +1,8 @@
 extends Node2D
 
-# ==================================================
-# PAUSE
-# ==================================================
-
-# Escape (ui_cancel) giờ được xử lý bởi node PauseMenu
-# (process_mode = ALWAYS) nằm trong Level1.tscn:
+# The level holds no logic yet.
 #
-#   - Đang chơi    → mở màn hình pause
-#   - Đang pause   → resume
-#   - Settings mở  → đóng settings, quay về nút pause
-#
-# Nhờ vậy Escape không còn quay thẳng về main menu
-# như trước nữa. LevelMusic có process_mode = ALWAYS
-# nên nhạc nền vẫn phát trong lúc pause.
+# Escape is handled by the PauseMenu node in this scene
+# (process_mode = ALWAYS), which opens and closes the
+# pause menu, while LevelMusic keeps playing while the
+# tree is paused.
