@@ -4,7 +4,7 @@ A 2D side-scrolling game developed with **Godot Engine**.
 
 This project is created as a game development learning project, focusing on gameplay programming, character movement, combat, UI/HUD, enemy and boss systems, and overall game design.
 
-## 📖 Story & Setting
+## 📖 Introduction
 
 The story takes place in a high-tech cyberpunk city, where neon lights illuminate every corner and its inhabitants are humanoid animal people.
 
