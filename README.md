@@ -24,6 +24,7 @@ The story takes place in a high-tech cyberpunk city, where neon lights illuminat
       One night, while passing through a dark alley, he notices a shadowy figure digging through a dumpster. The moment the creature hears him, a pair of glowing red eyes turns toward him.
       <br><br>
       Emerging from the darkness is a gigantic crow-like creature, its entire body wrapped in heavy chains. It is wild and ferocious, seemingly something that doesn't belong to this era. The creature lets out a terrifying roar and charges at him. But thanks to the agility of a cat and the quick hands of an experienced rogue, he manages to take the creature down.
+      <br><br>
     </td>
     <td width="40%" align="center">
       <img src="art/docs/boss_idea.jpg" alt="Boss concept art" width="100%">
