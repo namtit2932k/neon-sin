@@ -11,8 +11,7 @@ The story takes place in a high-tech cyberpunk city, where neon lights illuminat
 <table>
   <tr>
     <td width="40%" align="center">
-      <img src="art/docs/player_dea.jpg" alt="Player concept art" width="100%">
-      <br><b>Player Concept #1</b>
+      <img src="art/docs/player_idea.jpg" alt="Player concept art" width="100%">
     </td>
     <td>
       <h3>The Protagonist</h3>
@@ -28,10 +27,15 @@ The story takes place in a high-tech cyberpunk city, where neon lights illuminat
     </td>
     <td width="40%" align="center">
       <img src="art/docs/boss_idea.jpg" alt="Boss concept art" width="100%">
-      <br><b>Enemy Concept #1</b>
     </td>
   </tr>
 </table>
+
+Curious about where the creature came from, he follows its trail and eventually discovers a strange door hidden beneath the city's sewers. He steps through the door and descends a seemingly endless staircase. At the bottom, he finds something that should not exist.
+
+A lost city lies beneath the very city he has always known. Unlike the city above, filled with neon lights, this ancient city appears to belong to a forgotten civilization from a completely different era.
+
+Seeing a chance to make his fortune, the young rogue decides to venture into the lost city. But what he doesn't know is that the chained creature was not simply a monster wandering the streets. It was a remnant of the forgotten world. And by following it, he has unknowingly opened the door to something that was meant to remain buried.
 
 ## 🎮 Features
 
