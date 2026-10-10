@@ -4,6 +4,35 @@ A 2D side-scrolling game developed with **Godot Engine**.
 
 This project is created as a game development learning project, focusing on gameplay programming, character movement, combat, UI/HUD, enemy and boss systems, and overall game design.
 
+## 📖 Story & Setting
+
+The story takes place in a high-tech cyberpunk city, where neon lights illuminate every corner and its inhabitants are humanoid animal people.
+
+<table>
+  <tr>
+    <td width="40%" align="center">
+      <img src="art/docs/player_dea.jpg" alt="Player concept art" width="100%">
+      <br><b>Player Concept #1</b>
+    </td>
+    <td>
+      <h3>The Protagonist</h3>
+      The protagonist is a pink/white cat who always wears a purple hoodie. He is a petty thief and pickpocket, living from day to day by stealing whatever he can to survive.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <h3>The Encounter</h3>
+      One night, while passing through a dark alley, he notices a shadowy figure digging through a dumpster. The moment the creature hears him, a pair of glowing red eyes turns toward him.
+      <br><br>
+      Emerging from the darkness is a gigantic crow-like creature, its entire body wrapped in heavy chains. It is wild and ferocious, seemingly something that doesn't belong to this era. The creature lets out a terrifying roar and charges at him. But thanks to the agility of a cat and the quick hands of an experienced rogue, he manages to take the creature down.
+    </td>
+    <td width="40%" align="center">
+      <img src="art/docs/boss_idea.jpg" alt="Boss concept art" width="100%">
+      <br><b>Enemy Concept #1</b>
+    </td>
+  </tr>
+</table>
+
 ## 🎮 Features
 
 * 2D side-scrolling gameplay with movement, jump, run and dash

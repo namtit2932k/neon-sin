@@ -14,6 +14,11 @@ const MASK_WORLD_ENEMY: int = 3
 const LAYER_PLAYER: int = 1
 const LAYER_DASH_GHOST: int = 4
 
+# Optional separate input action for dash. If the action
+# does not exist in the Input Map, dash falls back to
+# "run" (just pressed), which is the old behaviour.
+const DASH_ACTION: StringName = &"dash"
+
 
 # ==================================================
 # EXPORTS
@@ -24,6 +29,27 @@ const LAYER_DASH_GHOST: int = 4
 @export var run_multiplier: float = 1.8
 @export var jump_force: float = 520.0
 @export var gravity: float = 1200.0
+
+@export_group("Feel")
+# Horizontal acceleration / deceleration (px/s^2).
+@export var accel: float = 2600.0
+@export var friction: float = 3200.0
+@export var air_accel: float = 2000.0
+@export var air_friction: float = 1400.0
+
+# Input forgiveness.
+@export var coyote_time: float = 0.1
+@export var jump_buffer_time: float = 0.1
+
+# Variable jump height: releasing jump early multiplies
+# the upward velocity by this value.
+@export var jump_cut: float = 0.45
+
+# Falling is heavier than rising, with a floaty apex.
+@export var fall_gravity_mult: float = 1.6
+@export var apex_gravity_mult: float = 0.55
+@export var apex_threshold: float = 80.0
+@export var max_fall_speed: float = 900.0
 
 @export_group("Stamina")
 @export var max_stamina: float = 100.0
@@ -38,6 +64,11 @@ const LAYER_DASH_GHOST: int = 4
 @export var dash_duration: float = 0.55
 @export var dash_cooldown: float = 0.4
 @export var dash_stamina_cost: float = 8.0
+
+# Fraction of the dash (at the end) used to ease the speed
+# down, and the speed fraction reached at the very end.
+@export_range(0.0, 1.0) var dash_ease_portion: float = 0.3
+@export_range(0.0, 1.0) var dash_end_speed: float = 0.45
 
 # Collisions stay off this long after a dash so the
 # player can fully exit an enemy body.
@@ -79,6 +110,10 @@ var dash_direction: float = 1.0
 var dash_timer: float = 0.0
 var dash_cd: float = 0.0
 var dash_grace_timer: float = 0.0
+
+# Jump forgiveness timers.
+var coyote_timer: float = 0.0
+var jump_buffer_timer: float = 0.0
 
 # Rest position of the attack hitbox, flipped with facing.
 var attack_offset_x: float = 0.0
@@ -135,19 +170,15 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("attack") and not is_attacking and not is_dashing:
 		start_attack()
 
-	# Tap Shift to dash, hold Shift to run.
 	dash_cd = maxf(dash_cd - delta, 0.0)
 
-	if Input.is_action_just_pressed("run") and _can_dash():
+	if _dash_pressed() and _can_dash():
 		start_dash(direction)
 
 	_update_stamina(delta, direction)
 	_update_horizontal_speed(delta, direction)
 	_update_facing(direction)
-
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = -jump_force
-
+	_update_jump(delta)
 	_update_animation(direction)
 
 	move_and_slide()
@@ -158,10 +189,44 @@ func _physics_process(delta: float) -> void:
 # ==================================================
 
 func _apply_gravity(delta: float) -> void:
-	if is_on_floor():
+	# A dash flies straight, gravity is ignored.
+	if is_on_floor() or is_dashing:
 		velocity.y = 0.0
+		return
+
+	var g := gravity
+
+	if velocity.y > 0.0:
+		# Falling: heavier, snappier landing.
+		g *= fall_gravity_mult
+	elif absf(velocity.y) < apex_threshold and Input.is_action_pressed("jump"):
+		# Near the apex while holding jump: hang a little.
+		g *= apex_gravity_mult
+
+	velocity.y = minf(velocity.y + g * delta, max_fall_speed)
+
+
+func _update_jump(delta: float) -> void:
+	# Coyote time: can still jump a moment after leaving a ledge.
+	if is_on_floor():
+		coyote_timer = coyote_time
 	else:
-		velocity.y += gravity * delta
+		coyote_timer = maxf(coyote_timer - delta, 0.0)
+
+	# Jump buffer: a press just before landing still counts.
+	if Input.is_action_just_pressed("jump"):
+		jump_buffer_timer = jump_buffer_time
+	else:
+		jump_buffer_timer = maxf(jump_buffer_timer - delta, 0.0)
+
+	if jump_buffer_timer > 0.0 and coyote_timer > 0.0 and not is_dashing:
+		velocity.y = -jump_force
+		jump_buffer_timer = 0.0
+		coyote_timer = 0.0
+
+	# Variable jump height: release early to cut the jump short.
+	if Input.is_action_just_released("jump") and velocity.y < 0.0:
+		velocity.y *= jump_cut
 
 
 func _update_stamina(delta: float, direction: float) -> void:
@@ -194,7 +259,12 @@ func _update_stamina(delta: float, direction: float) -> void:
 func _update_horizontal_speed(delta: float, direction: float) -> void:
 	if is_dashing:
 		dash_timer -= delta
-		velocity.x = dash_direction * dash_speed
+
+		# Full speed for most of the dash, then ease down
+		# over the last part so it does not stop dead.
+		var ease_time := dash_duration * dash_ease_portion
+		var k := 1.0 if ease_time <= 0.0 else clampf(dash_timer / ease_time, 0.0, 1.0)
+		velocity.x = dash_direction * dash_speed * lerpf(dash_end_speed, 1.0, k)
 
 		# A dash runs its full duration; only gethit/death
 		# (which call start_gethit/die) can interrupt it,
@@ -205,7 +275,16 @@ func _update_horizontal_speed(delta: float, direction: float) -> void:
 		return
 
 	var speed := move_speed * (run_multiplier if is_running else 1.0)
-	velocity.x = direction * speed
+	var target := direction * speed
+	var on_floor := is_on_floor()
+
+	var rate: float
+	if direction == 0.0:
+		rate = friction if on_floor else air_friction
+	else:
+		rate = accel if on_floor else air_accel
+
+	velocity.x = move_toward(velocity.x, target, rate * delta)
 
 
 func _update_facing(direction: float) -> void:
@@ -242,6 +321,14 @@ func use_stamina(amount: float) -> void:
 # DASH
 # ==================================================
 
+func _dash_pressed() -> bool:
+	if InputMap.has_action(DASH_ACTION):
+		return Input.is_action_just_pressed(DASH_ACTION)
+
+	# Fallback: old behaviour, Shift both runs and dashes.
+	return Input.is_action_just_pressed("run")
+
+
 func _can_dash() -> bool:
 	if is_dead or is_getting_hit or is_attacking or is_dashing:
 		return false
@@ -261,6 +348,7 @@ func start_dash(direction: float) -> void:
 	dash_timer = dash_duration
 	dash_cd = dash_cooldown
 	dash_grace_timer = 0.0
+	velocity.y = 0.0
 
 	# Ghost layer + world only mask = phase through enemies.
 	set_deferred("collision_layer", LAYER_DASH_GHOST)
