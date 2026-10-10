@@ -135,10 +135,14 @@ shape = SubResource("CapsuleShape2D_s1fef")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=440814122]
 sprite_frames = SubResource("SpriteFrames_s1fef")
-animation = &"idle"
+animation = &"dash"
 autoplay = "idle"
+frame = 4
+frame_progress = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1301418665]
+position_smoothing_enabled = true
+position_smoothing_speed = 12.0
 offset = Vector2(0, -150)
 limit_left = 0
 limit_top = 0

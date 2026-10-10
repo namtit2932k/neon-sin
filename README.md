@@ -14,6 +14,7 @@ This project is created as a game development learning project, focusing on game
 * Pause menu (resume / settings / quit / main menu)
 * Settings screen (Music / SFX / Voice volume, saved to file)
 * Audio system (music, sound effects, voice channels)
+* Dialogue system (typewriter text, branching choices, portraits)
 * Pixel-art based visual style
 
 ## 🛠️ Built With
@@ -27,23 +28,25 @@ This project is created as a game development learning project, focusing on game
 
 ```text
 neon-sin/
-├── art/                  # Sprites, UI assets, menu assets
+├── art/                  # Sprites, UI assets, menu assets, bitmap fonts
 ├── audio/                # Music and sound effects
 │   ├── music/
 │   └── sfx/
 ├── scenes/
-│   ├── enemies/          # Boss scene
+│   ├── enemies/          # Enemy scenes
 │   ├── levels/           # Level scenes
 │   ├── menu/             # Main menu, pause, settings scenes
 │   ├── player/           # Player scene
-│   └── ui/               # HUD, boss HUD
+│   └── ui/               # HUD, boss HUD, dialogue UI
 ├── scripts/
-│   ├── enemies/          # Boss AI
+│   ├── dialogue/         # Dialogue engine, UI, conversation data
+│   ├── enemies/          # Enemy AI
 │   ├── levels/           # Level scripts
 │   ├── player/           # Player controller
 │   └── ui/               # Menu, HUD scripts
 ├── default_bus_layout.tres
 ├── project.godot
+├── AGENTS.md
 └── README.md
 ```
 
@@ -60,6 +63,7 @@ The project is currently under development.
 * [x] Main menu with animated background
 * [x] Pause menu (Escape) and settings screen shared by both menus
 * [x] Audio system: looping music, attack voice and hit SFX
+* [x] Dialogue system: typewriter box with portraits, branching choices (J to advance, W/S to pick), tree pauses during a conversation
 
 ### In Progress
 
@@ -68,6 +72,8 @@ The project is currently under development.
 * [ ] Game progression
 * [ ] Visual effects (VFX)
 * [ ] More enemies and boss variety
+* [ ] Dialogue story content (branch copy still placeholder)
+* [ ] Human visual pass on the dialogue UI
 
 ## 🚀 Running the Project
 
@@ -101,6 +107,11 @@ git clone https://github.com/namtit2932k/neon-sin.git
 | Run (hold) | `Shift` |
 | Attack | `J` |
 | Pause / resume (in level) | `Escape` |
+| Dialogue: advance / confirm | `J` |
+| Dialogue: choose option | `W` / `S` |
+
+During a dialogue the level pauses (music keeps playing); `Escape` is
+swallowed so the pause menu cannot open mid-dialogue.
 
 ## 🎨 Development Goals
 

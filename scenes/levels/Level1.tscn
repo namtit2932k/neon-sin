@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cj1bx1nm05hg6" path="res://scenes/enemies/Crow.tscn" id="10_ku760"]
 [ext_resource type="AudioStream" uid="uid://blm52d2bwhqyn" path="res://audio/music/level1.ogg" id="40_levelmusic"]
 [ext_resource type="PackedScene" path="res://scenes/menu/PauseMenu.tscn" id="50_pausemenu"]
+[ext_resource type="PackedScene" path="res://scenes/ui/dialogue_intro.tscn" id="60_introdialogue"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1fef"]
 size = Vector2(2559.125, 88.5)
@@ -60,3 +61,5 @@ autoplay = true
 bus = &"Music"
 
 [node name="PauseMenu" parent="." unique_id=1338801112 instance=ExtResource("50_pausemenu")]
+
+[node name="IntroDialogue" parent="." instance=ExtResource("60_introdialogue")]

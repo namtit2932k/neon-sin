@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cqmenu0dialog"]
+
+[ext_resource type="Script" uid="uid://bxceckumvu54i" path="res://scripts/dialogue/dialogue_box.gd" id="1_box"]
+
+[node name="DialogueBox" type="CanvasLayer" unique_id=1359647393]
+layer = 50
+visible = false
+script = ExtResource("1_box")

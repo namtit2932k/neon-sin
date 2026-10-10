@@ -31,6 +31,9 @@ const LAYER_DASH_GHOST: int = 4
 @export var stamina_regen: float = 20.0
 
 @export_group("Dash")
+# 2026-10-10: user tested 780/0.35 then 950/0.208333 back
+# to the tuned sprite cycle; both felt too fast — reverted
+# to the original 620/0.55.
 @export var dash_speed: float = 620.0
 @export var dash_duration: float = 0.55
 @export var dash_cooldown: float = 0.4
@@ -129,7 +132,7 @@ func _physics_process(delta: float) -> void:
 
 	var direction := Input.get_axis("move_left", "move_right")
 
-	if Input.is_action_just_pressed("attack") and not is_attacking:
+	if Input.is_action_just_pressed("attack") and not is_attacking and not is_dashing:
 		start_attack()
 
 	# Tap Shift to dash, hold Shift to run.
@@ -193,9 +196,10 @@ func _update_horizontal_speed(delta: float, direction: float) -> void:
 		dash_timer -= delta
 		velocity.x = dash_direction * dash_speed
 
-		# Also ends early when another state (attack,
-		# gethit) takes over the animation.
-		if dash_timer <= 0.0 or animated_sprite.animation != "dash":
+		# A dash runs its full duration; only gethit/death
+		# (which call start_gethit/die) can interrupt it,
+		# never an attack started mid dash.
+		if dash_timer <= 0.0:
 			_stop_dash()
 
 		return
@@ -292,7 +296,10 @@ func start_attack() -> void:
 
 	is_attacking = true
 	has_hit_this_attack = false
-	_stop_dash()
+
+	# No _stop_dash() here: an attack pressed mid dash no
+	# longer cancels the dash; the input is swallowed and
+	# the dash keeps its full invulnerable flight
 
 	animated_sprite.play("attack")
 	attack_voice.play()
