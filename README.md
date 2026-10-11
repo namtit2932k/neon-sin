@@ -16,6 +16,7 @@ The story takes place in a high-tech cyberpunk city, where neon lights illuminat
     <td>
       <h3>The Protagonist</h3>
       The protagonist is a pink/white cat who always wears a purple hoodie. He is a petty thief and pickpocket, living from day to day by stealing whatever he can to survive.
+      <br><br>
     </td>
   </tr>
   <tr>
@@ -97,7 +98,7 @@ The project is currently under development.
 * [x] Main menu with animated background
 * [x] Pause menu (Escape) and settings screen shared by both menus
 * [x] Audio system: looping music, attack voice and hit SFX
-* [x] Dialogue system: typewriter box with portraits, branching choices (J to advance, W/S to pick), tree pauses during a conversation
+* [x] Dialogue system: typewriter box with portraits, branching choices
 
 ### In Progress
 
@@ -106,8 +107,7 @@ The project is currently under development.
 * [ ] Game progression
 * [ ] Visual effects (VFX)
 * [ ] More enemies and boss variety
-* [ ] Dialogue story content (branch copy still placeholder)
-* [ ] Human visual pass on the dialogue UI
+* [ ] Dialogue story content
 
 ## 🚀 Running the Project
 
@@ -156,7 +156,6 @@ The main goals of this project are:
 * Learn game systems design
 * Practice UI/HUD implementation
 * Build a complete playable prototype
-* Create a portfolio project demonstrating game development skills
 
 ## 📌 Status
 
